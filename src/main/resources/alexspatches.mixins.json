@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "mackery.alexspatches.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "mackery.alexspatches.mixin.AlexsPatchesMixinPlugin",
+  "refmap": "alexspatches.refmap.json",
+  "mixins": [
+    "alexscaves.ChunkStatusTasksMixin",
+    "alexscaves.DinosaurEntityMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

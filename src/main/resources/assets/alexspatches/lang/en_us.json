@@ -1,13 +1,8 @@
 {
-  "itemGroup.alexspatches": "Example Mod Tab",
-  "block.alexspatches.example_block": "Example Block",
-  "item.alexspatches.example_item": "Example Item",
-
   "alexspatches.configuration.title": "Alex's Patches Configs",
   "alexspatches.configuration.section.alexspatches.common.toml": "Alex's Patches Configs",
   "alexspatches.configuration.section.alexspatches.common.toml.title": "Alex's Patches Configs",
-  "alexspatches.configuration.items": "Item List",
-  "alexspatches.configuration.logDirtBlock": "Log Dirt Block",
-  "alexspatches.configuration.magicNumberIntroduction": "Magic Number Text",
-  "alexspatches.configuration.magicNumber": "Magic Number"
+  "alexspatches.configuration.worldgenDecorationCrashGuard": "Worldgen Decoration Crash Guard (AC #172)",
+  "alexspatches.configuration.dinosaurStuckWatchdog": "Dinosaur Stuck-Pathfinding Watchdog (AC #148)",
+  "alexspatches.configuration.dinosaurStuckTickThreshold": "Dinosaur Stuck Watchdog Threshold (ticks)"
 }

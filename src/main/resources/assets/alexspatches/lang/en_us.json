@@ -1,0 +1,13 @@
+{
+  "itemGroup.alexspatches": "Example Mod Tab",
+  "block.alexspatches.example_block": "Example Block",
+  "item.alexspatches.example_item": "Example Item",
+
+  "alexspatches.configuration.title": "Alex's Patches Configs",
+  "alexspatches.configuration.section.alexspatches.common.toml": "Alex's Patches Configs",
+  "alexspatches.configuration.section.alexspatches.common.toml.title": "Alex's Patches Configs",
+  "alexspatches.configuration.items": "Item List",
+  "alexspatches.configuration.logDirtBlock": "Log Dirt Block",
+  "alexspatches.configuration.magicNumberIntroduction": "Magic Number Text",
+  "alexspatches.configuration.magicNumber": "Magic Number"
+}

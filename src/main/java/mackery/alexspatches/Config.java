@@ -66,5 +66,15 @@ public class Config {
                                     "Default: true")
                     .define("powerDownFogCrashGuard", true);
 
+    public static final ModConfigSpec.BooleanValue BEHOLDER_EYE_CHUNK_LEAK_GUARD = BUILDER
+            .comment(
+                    "Alex's Caves issue #139: BeholderEyeEntity (the possessable scrying eye) force-loads a",
+                    "large chunk radius around itself when a player starts possessing it, but since the eye",
+                    "moves while possessed, it force-unloads the wrong (final) position when possession ends -",
+                    "permanently leaking the entire originally-loaded area every single time the item is used.",
+                    "This remembers the actual loaded position and unloads that instead.",
+                    "Default: true")
+            .define("beholderEyeChunkLeakGuard", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 }

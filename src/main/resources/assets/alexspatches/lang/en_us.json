@@ -7,5 +7,6 @@
   "alexspatches.configuration.dinosaurStuckTickThreshold": "Dinosaur Stuck Watchdog Threshold (ticks)",
   "alexspatches.configuration.dancingJukeboxPacketGuard": "Dancing Jukebox Packet Guard (AM #51/#59)",
   "alexspatches.configuration.anteaterTonguePoseStackGuard": "Anteater Tongue Pose Stack Guard (AM #52)",
-  "alexspatches.configuration.powerDownFogCrashGuard": "Power Down Fog Crash Guard (AM #46)"
+  "alexspatches.configuration.powerDownFogCrashGuard": "Power Down Fog Crash Guard (AM #46)",
+  "alexspatches.configuration.beholderEyeChunkLeakGuard": "Beholder Eye Chunk Leak Guard (AC #139)"
 }

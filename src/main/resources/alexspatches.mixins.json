@@ -6,9 +6,13 @@
   "refmap": "alexspatches.refmap.json",
   "mixins": [
     "alexscaves.ChunkStatusTasksMixin",
-    "alexscaves.DinosaurEntityMixin"
+    "alexscaves.DinosaurEntityMixin",
+    "alexsmobs.DancingJukeboxPacketMixin"
   ],
-  "client": [],
+  "client": [
+    "alexsmobs.LayerAnteaterTongueItemMixin",
+    "alexsmobs.ClientEventsMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

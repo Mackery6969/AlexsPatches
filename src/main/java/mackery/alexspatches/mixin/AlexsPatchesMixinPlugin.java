@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 import mackery.alexspatches.AlexsPatches;
-import net.neoforged.fml.ModList;
 
 public class AlexsPatchesMixinPlugin implements IMixinConfigPlugin {
 
@@ -26,21 +25,24 @@ public class AlexsPatchesMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.startsWith(ALEXSCAVES_PACKAGE)) {
-            boolean loaded = ModList.get().isLoaded(AlexsPatches.ALEXSCAVES_MODID);
-            if (!loaded) {
-                AlexsPatches.LOGGER.info("Skipping {} - Alex's Caves is not installed", mixinClassName);
+        if (mixinClassName.startsWith(ALEXSCAVES_PACKAGE) || mixinClassName.startsWith(ALEXSMOBS_PACKAGE)) {
+            boolean present = alexspatches$classExists(targetClassName);
+            if (!present) {
+                AlexsPatches.LOGGER.info("Skipping {} - target class {} was not found (its mod is not installed)",
+                        mixinClassName, targetClassName);
             }
-            return loaded;
-        }
-        if (mixinClassName.startsWith(ALEXSMOBS_PACKAGE)) {
-            boolean loaded = ModList.get().isLoaded(AlexsPatches.ALEXSMOBS_MODID);
-            if (!loaded) {
-                AlexsPatches.LOGGER.info("Skipping {} - Alex's Mobs is not installed", mixinClassName);
-            }
-            return loaded;
+            return present;
         }
         return true;
+    }
+
+    private static boolean alexspatches$classExists(String className) {
+        try {
+            Class.forName(className, false, AlexsPatchesMixinPlugin.class.getClassLoader());
+            return true;
+        } catch (Throwable t) {
+            return false;
+        }
     }
 
     @Override

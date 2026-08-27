@@ -37,12 +37,8 @@ public class AlexsPatchesMixinPlugin implements IMixinConfigPlugin {
     }
 
     private static boolean alexspatches$classExists(String className) {
-        try {
-            Class.forName(className, false, AlexsPatchesMixinPlugin.class.getClassLoader());
-            return true;
-        } catch (Throwable t) {
-            return false;
-        }
+        String resourceName = className.replace('.', '/') + ".class";
+        return AlexsPatchesMixinPlugin.class.getClassLoader().getResource(resourceName) != null;
     }
 
     @Override

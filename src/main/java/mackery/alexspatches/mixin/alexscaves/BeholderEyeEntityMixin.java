@@ -19,8 +19,7 @@ public class BeholderEyeEntityMixin {
             method = "loadChunksAround",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/Entity;blockPosition()Lnet/minecraft/core/BlockPos;",
-                    ordinal = 1
+                    target = "Lcom/github/alexmodguy/alexscaves/server/entity/item/BeholderEyeEntity;blockPosition()Lnet/minecraft/core/BlockPos;"
             )
     )
     private BlockPos alexspatches$fixLeakedChunkTickets(Entity self, boolean load) {

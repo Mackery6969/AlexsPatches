@@ -8,7 +8,9 @@
     "alexscaves.ChunkStatusTasksMixin",
     "alexscaves.DinosaurEntityMixin",
     "alexscaves.BeholderEyeEntityMixin",
-    "alexsmobs.DancingJukeboxPacketMixin"
+    "alexsmobs.DancingJukeboxPacketMixin",
+    "alexsmobs.EntityCentipedeBodyMixin",
+    "alexsmobs.EntityAnacondaPartMixin"
   ],
   "client": [
     "alexsmobs.LayerAnteaterTongueItemMixin",

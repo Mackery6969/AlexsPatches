@@ -28,7 +28,13 @@ sourceSets.main.resources {
 }
 
 repositories {
-    // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        name = "CurseMaven"
+        url = "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -116,6 +122,13 @@ configurations {
 }
 
 dependencies {
+    // Alex's Caves (Unofficial Port) 2.0.10 for 1.21.1 - curseforge.com/minecraft/mc-mods/alexs-caves-unofficial-port
+    // Project 1420348, file 7981977. Bump the file id here when targeting a newer AC release.
+    compileOnly "curse.maven:alexscaves-1420348:7981977"
+    // Alex's Mobs (Unofficial Port) 1.22.17 for 1.21.1 - curseforge.com/minecraft/mc-mods/alexs-mobs-1-21-1-port
+    // Project 1415721, file 7528193. Bump the file id here when targeting a newer AM release.
+    compileOnly "curse.maven:alexsmobs-1415721:7528193"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"

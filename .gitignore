@@ -38,3 +38,6 @@ run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+
+# Compile-only reference jars for Alex's Caves / Alex's Mobs
+libs/

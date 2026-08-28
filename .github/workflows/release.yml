@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: "Release type (also controls the GitHub prerelease flag)"
+        type: choice
+        options:
+          - release
+          - beta
+          - alpha
+        default: release
+      changelog:
+        description: "Changelog for this release (Markdown). Leave blank to pull the matching version's section from CHANGELOG.md automatically."
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: "21"
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Read mod version
+        id: meta
+        run: |
+          MOD_VERSION=$(grep -oP '^mod_version=\K.*' gradle.properties)
+          echo "mod_version=$MOD_VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v${MOD_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to GitHub Releases and CurseForge
+        uses: Kira-NT/mc-publish@v3
+        with:
+          version: ${{ steps.meta.outputs.mod_version }}
+          version-type: ${{ inputs.release_type }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-tag: ${{ steps.meta.outputs.tag }}
+
+          changelog: ${{ inputs.changelog }}
+          changelog-file: ${{ inputs.changelog == '' && 'CHANGELOG.md' || '' }}
+
+          curseforge-id: 1668760
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          dependencies: |
+            alexscaves(optional){curseforge:1420348}
+            alexsmobs(optional){curseforge:1415721}

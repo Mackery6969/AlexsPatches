@@ -5,9 +5,9 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import com.github.alexmodguy.alexscaves.server.entity.item.BeholderEyeEntity;
 import mackery.alexspatches.Config;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
 
 @Mixin(targets = "com.github.alexmodguy.alexscaves.server.entity.item.BeholderEyeEntity", remap = false)
 public class BeholderEyeEntityMixin {
@@ -22,7 +22,7 @@ public class BeholderEyeEntityMixin {
                     target = "Lcom/github/alexmodguy/alexscaves/server/entity/item/BeholderEyeEntity;blockPosition()Lnet/minecraft/core/BlockPos;"
             )
     )
-    private BlockPos alexspatches$fixLeakedChunkTickets(Entity self, boolean load) {
+    private BlockPos alexspatches$fixLeakedChunkTickets(BeholderEyeEntity self, boolean load) {
         BlockPos currentPos = self.blockPosition();
         if (!Config.BEHOLDER_EYE_CHUNK_LEAK_GUARD.get()) {
             return currentPos;

@@ -66,6 +66,27 @@ public class Config {
                                     "Default: true")
                     .define("powerDownFogCrashGuard", true);
 
+    public static final ModConfigSpec.BooleanValue THROTTLE_CENTIPEDE_HEIGHT_SCAN = BUILDER
+            .comment(
+                    "Alex's Mobs: EntityCentipedeBody/EntityAnacondaPart's tickMultipartPosition() rescans",
+                    "terrain height via getLowPartHeight()/getHighPartHeight() every tick for every body/tail",
+                    "segment - each is up to ~15 block+collision-shape queries, so up to ~30 per segment per",
+                    "tick (measured as a large share of raw block-lookup cost in a spark profile with several",
+                    "centipedes loaded, 2026-08-28). The result is already damped to +/-0.2 blocks",
+                    "(prevHeight), so a moving centipede/anaconda's silhouette doesn't actually change",
+                    "tick-to-tick anyway. This reuses the last computed height for most ticks instead of",
+                    "rescanning every single one - same visual result except a slightly delayed reaction",
+                    "(a few ticks) to a sudden terrain edge. Covers both mobs - they use the identical pattern.",
+                    "Default: true")
+            .define("throttleCentipedeHeightScan", true);
+
+    public static final ModConfigSpec.IntValue CENTIPEDE_HEIGHT_SCAN_INTERVAL = BUILDER
+            .comment(
+                    "Only used when throttleCentipedeHeightScan is enabled. Rescan terrain height once",
+                    "every N ticks per segment instead of every tick.",
+                    "Default: 3")
+            .defineInRange("centipedeHeightScanInterval", 3, 1, 20);
+
     public static final ModConfigSpec.BooleanValue BEHOLDER_EYE_CHUNK_LEAK_GUARD = BUILDER
             .comment(
                     "Alex's Caves issue #139: BeholderEyeEntity (the possessable scrying eye) force-loads a",

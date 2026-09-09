@@ -52,21 +52,41 @@ jobs:
       - name: Read mod version
         id: meta
         run: |
+          MOD_ID=$(grep -oP '^mod_id=\K.*' gradle.properties)
           MOD_VERSION=$(grep -oP '^mod_version=\K.*' gradle.properties)
           echo "mod_version=$MOD_VERSION" >> "$GITHUB_OUTPUT"
+          echo "name=${MOD_ID}-${MOD_VERSION}" >> "$GITHUB_OUTPUT"
           echo "tag=v${MOD_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Extract this version's changelog section
+        id: changelog
+        run: |
+          MOD_VERSION="${{ steps.meta.outputs.mod_version }}"
+          {
+            echo "text<<CHANGELOG_EOF"
+            awk -v ver="$MOD_VERSION" '
+              /^## \[/ {
+                if (found) exit
+                if (index($0, "[" ver "]") > 0) { found=1; next }
+                next
+              }
+              found && /^\[[^]]+\]:/ { next }
+              found { print }
+            ' CHANGELOG.md
+            echo "CHANGELOG_EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Publish to GitHub Releases and CurseForge
         uses: Kira-NT/mc-publish@v3
         with:
+          name: ${{ steps.meta.outputs.name }}
           version: ${{ steps.meta.outputs.mod_version }}
           version-type: ${{ inputs.release_type }}
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-tag: ${{ steps.meta.outputs.tag }}
 
-          changelog: ${{ inputs.changelog }}
-          changelog-file: ${{ inputs.changelog == '' && 'CHANGELOG.md' || '' }}
+          changelog: ${{ inputs.changelog != '' && inputs.changelog || steps.changelog.outputs.text }}
 
           curseforge-id: 1668760
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}

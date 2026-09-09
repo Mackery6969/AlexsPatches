@@ -1,0 +1,12 @@
+{
+  "homepage": "https://github.com/Mackery6969/AlexsPatches",
+  "1.21.1": {
+    "1.0.2": "Added an automatic u01 patcher.\nCorrected the license shown in the mod list.",
+    "1.0.1": "Fixed Cave Centipede bodies lagging the server.\nGeneral performance changes.",
+    "1.0.0": "Initial release."
+  },
+  "promos": {
+    "1.21.1-latest": "1.0.2",
+    "1.21.1-recommended": "1.0.2"
+  }
+}

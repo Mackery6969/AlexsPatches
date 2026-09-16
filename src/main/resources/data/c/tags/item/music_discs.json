@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "alexscaves:music_disc_fusion", "required": false },
+    { "id": "alexscaves:music_disc_tasty", "required": false }
+  ]
+}

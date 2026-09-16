@@ -33,6 +33,7 @@
 
 _Initial release._
 
+[1.0.3]: https://github.com/Mackery6969/AlexsPatches/releases/tag/v1.0.3
 [1.0.2]: https://github.com/Mackery6969/AlexsPatches/releases/tag/v1.0.2
 [1.0.1]: https://github.com/Mackery6969/AlexsPatches/releases/tag/v1.0.1
 [1.0.0]: https://github.com/Mackery6969/AlexsPatches/releases/tag/v1.0.0

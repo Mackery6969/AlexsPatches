@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.4] - 2026-10-15
+
+### Fixed
+
+- Fixed a Neoforge security vulnerability where hackers could trigger denial-of-service attacks in a minecraft server.
+
 ## [1.0.3] - 2026-09-16
 
 ### Fixed

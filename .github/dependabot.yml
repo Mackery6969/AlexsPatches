@@ -32,6 +32,9 @@ updates:
           - "patch"
 
     ignore:
+      # Bundled with Minecraft; the game ships and pins its own copy
+      - dependency-name: "org.lz4:lz4-java"
+
       - dependency-name: "net.neoforged:*"
         update-types:
           - "version-update:semver-major"
@@ -39,9 +42,6 @@ updates:
       - dependency-name: "net.neoforged.gradle*"
         update-types:
           - "version-update:semver-major"
-
-      # Bundled with Minecraft; the game ships and pins its own copy
-      - dependency-name: "org.lz4:lz4-java"
 
   - package-ecosystem: "github-actions"
     directory: "/"

@@ -40,6 +40,9 @@ updates:
         update-types:
           - "version-update:semver-major"
 
+      # Bundled with Minecraft; the game ships and pins its own copy
+      - dependency-name: "org.lz4:lz4-java"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "main"

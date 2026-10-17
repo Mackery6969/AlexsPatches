@@ -25,15 +25,15 @@ public class AlexsPatchesMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.startsWith(ALEXSCAVES_PACKAGE) || mixinClassName.startsWith(ALEXSMOBS_PACKAGE)) {
-            boolean present = alexspatches$classExists(targetClassName);
-            if (!present) {
-                AlexsPatches.LOGGER.info("Skipping {} - target class {} was not found (its mod is not installed)",
-                        mixinClassName, targetClassName);
-            }
-            return present;
+        if (!mixinClassName.startsWith(ALEXSCAVES_PACKAGE) && !mixinClassName.startsWith(ALEXSMOBS_PACKAGE)) {
+            return true;
         }
-        return true;
+        boolean present = alexspatches$classExists(targetClassName);
+        if (!present) {
+            AlexsPatches.LOGGER.info("Skipping {} - target class {} was not found (its mod is not installed)",
+                    mixinClassName, targetClassName);
+        }
+        return present;
     }
 
     private static boolean alexspatches$classExists(String className) {

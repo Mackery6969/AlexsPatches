@@ -62,15 +62,18 @@ public abstract class DinosaurEntityMixin extends TamableAnimal {
         }
 
         alexspatches$watchdogStuckTicks++;
-        if (alexspatches$watchdogStuckTicks > Config.DINOSAUR_STUCK_TICK_THRESHOLD.get()) {
-            navigation.stop();
-            alexspatches$watchdogStuckTicks = 0;
-            alexspatches$watchdogHasReference = false;
-            AlexsPatches.LOGGER.debug(
-                    "[AlexsPatches] Stopped navigation for a stuck dinosaur ({}) at {} that made no progress "
-                            + "for {} ticks (see Alex's Caves issue #148)",
-                    this.getType(), this.blockPosition(), Config.DINOSAUR_STUCK_TICK_THRESHOLD.get());
+        int threshold = Config.DINOSAUR_STUCK_TICK_THRESHOLD.get();
+        if (alexspatches$watchdogStuckTicks <= threshold) {
+            return;
         }
+
+        navigation.stop();
+        alexspatches$watchdogStuckTicks = 0;
+        alexspatches$watchdogHasReference = false;
+        AlexsPatches.LOGGER.debug(
+                "[AlexsPatches] Stopped navigation for a stuck dinosaur ({}) at {} that made no progress "
+                        + "for {} ticks (see Alex's Caves issue #148)",
+                this.getType(), this.blockPosition(), threshold);
     }
 
     @Unique

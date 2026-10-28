@@ -48,6 +48,9 @@ updates:
 
       # Bundled with Minecraft/NeoForge and the Gradle plugin classpath; not declared or shipped by this mod
       - dependency-name: "com.google.guava:guava"
+      
+      # Bundled with Minecraft; the game ships and pins its own copy
+      - dependency-name: "org.apache.logging.log4j:log4j-core"
 
   - package-ecosystem: "github-actions"
     directory: "/"
